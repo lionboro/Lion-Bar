@@ -42,7 +42,7 @@ public class Demo {
 		System.out.println("Bredthfirstsearch:" + " " + solution2);
 		System.out.println(" ");
 		System.out.println("Depthfirstsearch:" + " " + solution3);
-
+		maze3d.toByteArray();
 	}
 }
 
