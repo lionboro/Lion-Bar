@@ -1,6 +1,9 @@
 package Demo;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
@@ -9,6 +12,7 @@ import algorithms.search.BestFirstSearch;
 import algorithms.search.BreadthFirstSearch;
 import algorithms.search.DepthFirstSearch;
 import algorithms.search.Solution;
+import io.MyDecompressorInputStream;
 /**
  *  this class creates an object adapter, solving the maze by Bfs,Dfs,BreadthFirstSearch
  * @author Bar 
@@ -16,7 +20,7 @@ import algorithms.search.Solution;
  */
 public class Demo {
 
-	 public void run(){
+	 public void run() {
 		 //Creating a maze3d by MyMaze3dGenerator 
 		MyMaze3dGenerator myMaze = new MyMaze3dGenerator();
 		Maze3d maze3d = myMaze.generate(7,7,3);
@@ -43,6 +47,7 @@ public class Demo {
 		System.out.println(" ");
 		System.out.println("Depthfirstsearch:" + " " + solution3);
 		maze3d.toByteArray();
+		
 	}
 }
 
