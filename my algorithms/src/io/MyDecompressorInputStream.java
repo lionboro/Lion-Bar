@@ -10,10 +10,16 @@ public class MyDecompressorInputStream extends InputStream{
 	public MyDecompressorInputStream(InputStream In) {
 		this.In=In;
 	}
+	public int read() throws IOException
+	{
+		return In.read();
+	}
+	
 	@Override
-	public int read() throws IOException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int read(byte[] Bytes) throws IOException {
+		int size=In.available();
+		System.out.println(size);
+		return size;
 	}
 
 }
