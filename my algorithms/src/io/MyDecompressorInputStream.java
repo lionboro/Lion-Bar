@@ -15,11 +15,34 @@ public class MyDecompressorInputStream extends InputStream{
 		return In.read();
 	}
 	
+	//read from file
 	@Override
 	public int read(byte[] Bytes) throws IOException {
-		int size=In.available();
-		System.out.println(size);
-		return size;
+		byte last;
+		byte counter;
+		int inSize= In.available();
+		int k = 0 ; // the number of current used bytes
+		
+		for(int i = 0 ; i < inSize ; i += 2)
+		{
+			if(Bytes.length <= k)
+				break;
+			
+			last = (byte)In.read();
+			counter = (byte)In.read();
+			
+			for(int j = 0 ; j < counter ; j++)
+			{
+				if(Bytes.length <= k)
+					break;
+				Bytes[k++] = last;
+			}
+		}
+		
+		return -1;
+		
+		
 	}
+
 
 }

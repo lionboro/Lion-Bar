@@ -210,6 +210,7 @@ public class Maze3d {
 	}
 
 	public byte[] toByteArray() {
+		
 		// put in arraylist (row,column,floor,start(x,y,z),goal(x,y,z))
 		ArrayList<Byte> Array = new ArrayList<Byte>();
 		Array.add((byte) getRow());

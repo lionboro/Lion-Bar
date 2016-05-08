@@ -18,6 +18,7 @@ public class MyCompressorOutputStream extends OutputStream {
 
 	}
 
+	//write to file
 	public void write(byte[] b) throws IOException {
 		byte lastByte = b[0];
 		int count = 1;
