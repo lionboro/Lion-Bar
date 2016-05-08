@@ -3,46 +3,41 @@ package io;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MyDecompressorInputStream extends InputStream{
+public class MyDecompressorInputStream extends InputStream {
 
 	InputStream In;
-	
+
 	public MyDecompressorInputStream(InputStream In) {
-		this.In=In;
+		this.In = In;
 	}
-	public int read() throws IOException
-	{
+
+	// read from file
+	public int read() throws IOException {
 		return In.read();
 	}
-	
-	//read from file
+
 	@Override
 	public int read(byte[] Bytes) throws IOException {
 		byte last;
 		byte counter;
-		int inSize= In.available();
-		int k = 0 ; // the number of current used bytes
-		
-		for(int i = 0 ; i < inSize ; i += 2)
-		{
-			if(Bytes.length <= k)
+		int inSize = In.available();
+		int k = 0; // the number of current used bytes
+
+		for (int i = 0; i < inSize; i += 2) {
+			if (Bytes.length <= k)
 				break;
-			
-			last = (byte)In.read();
-			counter = (byte)In.read();
-			
-			for(int j = 0 ; j < counter ; j++)
-			{
-				if(Bytes.length <= k)
+
+			last = (byte) In.read();
+			counter = (byte) In.read();
+
+			for (int j = 0; j < counter; j++) {
+				if (Bytes.length <= k)
 					break;
 				Bytes[k++] = last;
 			}
 		}
-		
+
 		return -1;
-		
-		
+
 	}
-
-
 }
