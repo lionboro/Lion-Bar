@@ -1,5 +1,6 @@
 package io;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -7,7 +8,7 @@ public class MyDecompressorInputStream extends InputStream {
 
 	private InputStream In;
 
-	public MyDecompressorInputStream(InputStream In) {
+	public MyDecompressorInputStream(FileInputStream In) {
 		this.In = In;
 	}
 

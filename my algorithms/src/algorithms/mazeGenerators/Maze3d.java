@@ -98,13 +98,15 @@ public class Maze3d {
 		this.column = B[1];
 		this.floor = B[2];
 		// start position [x][y][z]
-		this.getStartPosition().setX(B[3]);
+	/*	this.getStartPosition().setX(B[3]);
 		this.getStartPosition().setY(B[4]);
 		this.getStartPosition().setZ(B[5]);
 		// goal position [x][y][z]
 		this.getGoalPosition().setX(B[6]);
 		this.getGoalPosition().setY(B[7]);
-		this.getGoalPosition().setZ(B[8]);
+		this.getGoalPosition().setZ(B[8]);*/
+		this.startPosition = new Position(B[5],B[4],B[3]);
+		this.goalPosition = new Position(B[8],B[6],B[7]);
 		//all maze cells
 		int c=8;
 		for (int i = 0; i < this.row; i++) {
@@ -252,6 +254,7 @@ public class Maze3d {
 					Array.add((byte) maze[x][y][z]);
 
 				}
+				
 			}
 		}
 		// copy the array and convert to bytes array;
@@ -259,7 +262,7 @@ public class Maze3d {
 		for (int i = 0; i < bytes.length; i++) {
 			bytes[i] = Array.get(i);
 		}
-
+		System.out.println(Array);
 		return bytes;
 	}
 
