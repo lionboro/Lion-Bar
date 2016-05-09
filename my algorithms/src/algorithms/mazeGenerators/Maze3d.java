@@ -17,6 +17,7 @@ public class Maze3d {
 	public int[][][] maze;
 	private Position startPosition;
 	private Position goalPosition;
+	private int[][][] maze3d;
 
 	// WALL OR FREE
 	public static final int Free = 0;
@@ -91,8 +92,29 @@ public class Maze3d {
 		this.goalPosition = goalPosition;
 	}
 
-	public Maze3d(byte[] bytes) {
-		Maze3d maze = new Maze3d(bytes);
+	public Maze3d(byte[] B) {
+		// size of the maze
+		this.row = B[0];
+		this.column = B[1];
+		this.floor = B[2];
+		// start position [x][y][z]
+		this.getStartPosition().setX(B[3]);
+		this.getStartPosition().setY(B[4]);
+		this.getStartPosition().setZ(B[5]);
+		// goal position [x][y][z]
+		this.getGoalPosition().setX(B[6]);
+		this.getGoalPosition().setY(B[7]);
+		this.getGoalPosition().setZ(B[8]);
+		//all maze cells
+		int c=8;
+		for (int i = 0; i < this.row; i++) {
+			for (int j = 0; j < this.column; j++) {
+				for (int k = 0; k < this.floor; k++) {
+					this.maze[i][j][k]=B[c+1];
+				}
+
+			}
+		}
 	}
 
 	// cTOR of the maze
@@ -210,7 +232,7 @@ public class Maze3d {
 	}
 
 	public byte[] toByteArray() {
-		
+
 		// put in arraylist (row,column,floor,start(x,y,z),goal(x,y,z))
 		ArrayList<Byte> Array = new ArrayList<Byte>();
 		Array.add((byte) getRow());

@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 public class MyDecompressorInputStream extends InputStream {
 
-	InputStream In;
+	private InputStream In;
 
 	public MyDecompressorInputStream(InputStream In) {
 		this.In = In;

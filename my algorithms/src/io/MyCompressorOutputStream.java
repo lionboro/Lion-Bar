@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 public class MyCompressorOutputStream extends OutputStream {
 
-	OutputStream Out;
+	private OutputStream Out;
 
 	public MyCompressorOutputStream(OutputStream Out) {
 		this.Out = Out;

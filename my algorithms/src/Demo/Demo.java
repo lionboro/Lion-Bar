@@ -1,10 +1,15 @@
 package Demo;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Maze3dGenerator;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.BestFirstSearch;
@@ -12,7 +17,10 @@ import algorithms.search.BestFirstSearch;
 import algorithms.search.BreadthFirstSearch;
 import algorithms.search.DepthFirstSearch;
 import algorithms.search.Solution;
+import controller.Command;
+import io.MyCompressorOutputStream;
 import io.MyDecompressorInputStream;
+import view.Cli;
 /**
  *  this class creates an object adapter, solving the maze by Bfs,Dfs,BreadthFirstSearch
  * @author Bar 
@@ -25,7 +33,7 @@ public class Demo {
 		MyMaze3dGenerator myMaze = new MyMaze3dGenerator();
 		Maze3d maze3d = myMaze.generate(7,7,3);
 		//Print the maze
-		maze3d.print();
+		/*maze3d.print();
 		//StartPosition and GoalPosition of maze3d
 		Position pos = maze3d.getStartPosition();
 		Position po = maze3d.getGoalPosition();
@@ -45,8 +53,9 @@ public class Demo {
 		System.out.println(" ");
 		System.out.println("Bredthfirstsearch:" + " " + solution2);
 		System.out.println(" ");
-		System.out.println("Depthfirstsearch:" + " " + solution3);
-		maze3d.toByteArray();
-		
-	}
+		System.out.println("Depthfirstsearch:" + " " + solution3);*/
+		byte[] Btest=maze3d.toByteArray();
+		Maze3d m3=new Maze3d(Btest);
+		m3.print();
+	 }
 }
