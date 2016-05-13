@@ -18,7 +18,7 @@ public class Maze3d {
 	private Position startPosition;
 	private Position goalPosition;
 	private int[][][] maze3d;
-
+	int x=6;
 	// WALL OR FREE
 	public static final int Free = 0;
 	public static final int Wall = 1;
@@ -105,8 +105,8 @@ public class Maze3d {
 		this.getGoalPosition().setX(B[6]);
 		this.getGoalPosition().setY(B[7]);
 		this.getGoalPosition().setZ(B[8]);*/
-		this.startPosition = new Position(B[5],B[4],B[3]);
-		this.goalPosition = new Position(B[8],B[6],B[7]);
+		this.startPosition = new Position(B[3],B[4],B[5]);
+		this.goalPosition = new Position(B[6],B[7],B[8]);
 		//all maze cells
 		int c=8;
 		for (int i = 0; i < this.row; i++) {
