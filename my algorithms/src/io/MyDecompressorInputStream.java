@@ -1,5 +1,6 @@
 package io;
 
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,27 +19,26 @@ public class MyDecompressorInputStream extends InputStream {
 	}
 
 	@Override
-	public int read(byte[] Bytes) throws IOException {
-		byte last;
-		byte counter;
-		int inSize = In.available();
-		int k = 0; // the number of current used bytes
-
-		for (int i = 0; i < inSize; i += 2) {
-			if (Bytes.length <= k)
-				break;
-
-			last = (byte) In.read();
-			counter = (byte) In.read();
-
-			for (int j = 0; j < counter; j++) {
-				if (Bytes.length <= k)
-					break;
-				Bytes[k++] = last;
-			}
+	public int read(byte[] arr) throws IOException {
+    DataInputStream data = new DataInputStream(In);
+		
+		byte num;
+		int i = 0;
+		int index;
+		
+		while (data.available() >= 5 && i < arr.length){
+			num = data.readByte();
+			index = data.readInt();
+			index += i;
+			
+		for (;i < index; i++) {
+			arr[i] = num ;
+			
+		}
+		
 		}
 
-		return -1;
-
+		
+		return arr.length;
 	}
 }

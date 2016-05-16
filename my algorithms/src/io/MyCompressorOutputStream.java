@@ -1,9 +1,11 @@
 package io;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
 public class MyCompressorOutputStream extends OutputStream {
+
 
 	private OutputStream Out;
 
@@ -19,24 +21,25 @@ public class MyCompressorOutputStream extends OutputStream {
 	}
 
 	//write to file
-	public void write(byte[] b) throws IOException {
-		byte lastByte = b[0];
-		int count = 1;
-		for (int i = 1; i < b.length; i++) {
-			if (b[i] == lastByte)
-				count++;
-			else {
-				while (count > 255) {
-					Out.write(lastByte);
-					Out.write(255);
-					count -= 255;
-				}
-				Out.write(lastByte); 
-				Out.write(count);
-				lastByte = b[i];
-				count = 1;
-			}
-
+	public void write(byte[] arr) throws IOException {
+		DataOutputStream data = new DataOutputStream(Out);
+		int counter = 0;
+		byte num = arr[0];
+	
+	    for (byte b : arr) {
+		if(b == num){
+		   counter++;	
 		}
+		else{	
+		data.writeByte(num);
+		data.writeInt(counter);
+		num = b;
+		counter = 1;	
+		}
+		
+	}
+	
+	data.writeByte(num);
+	data.writeInt(counter);
 	}
 }

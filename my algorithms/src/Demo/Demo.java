@@ -57,23 +57,20 @@ public class Demo {
 		/*byte[] Btest=maze3d.toByteArray();
 		Maze3d m3=new Maze3d(Btest);
 		m3.print();*/
-		MyMaze3dGenerator myMaze = new MyMaze3dGenerator();
-		Maze3d maze;
-		maze=myMaze.generate(7, 7, 3);
-		
+		 MyMaze3dGenerator myMazeGenerator = new MyMaze3dGenerator();
+		 Maze3d maze = myMazeGenerator.generate(5, 5, 5);
 		
 		// save it to a file
-		OutputStream out=new MyCompressorOutputStream(
-		new FileOutputStream("1.maz"));
+		OutputStream out=new MyCompressorOutputStream(new FileOutputStream("1.maz"));
 		out.write(maze.toByteArray());
 		out.flush();
 		out.close();
-		InputStream in=new MyDecompressorInputStream(
-		new FileInputStream("1.maz"));
+		InputStream in=new MyDecompressorInputStream(new FileInputStream("1.maz"));
 		byte b[]=new byte[maze.toByteArray().length];
 		in.read(b);
 		in.close();
 		Maze3d loaded=new Maze3d(b);
+		
 		System.out.println(loaded.equals(maze));
 	 }
 }

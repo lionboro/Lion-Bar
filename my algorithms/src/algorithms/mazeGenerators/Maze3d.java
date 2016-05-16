@@ -1,8 +1,13 @@
 package algorithms.mazeGenerators;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.print.DocFlavor.STRING;
+
 
 import algorithms.mazeGenerators.Direction;
 import algorithms.mazeGenerators.Position;
@@ -17,7 +22,7 @@ public class Maze3d {
 	public int[][][] maze;
 	private Position startPosition;
 	private Position goalPosition;
-	private int[][][] maze3d;
+	//private int[][][] maze3d;
 	int x=6;
 	// WALL OR FREE
 	public static final int Free = 0;
@@ -91,30 +96,31 @@ public class Maze3d {
 	public void setGoalPosition(Position goalPosition) {
 		this.goalPosition = goalPosition;
 	}
+	
+	
+	public int getmaze3dIndex(int dimenstion, int rows, int columns) {
+		return this.maze[dimenstion][rows][columns];
+	}
+	
+	
+	
 
-	public Maze3d(byte[] B) {
-		// size of the maze
-		this.row = B[0];
-		this.column = B[1];
-		this.floor = B[2];
-		// start position [x][y][z]
-	/*	this.getStartPosition().setX(B[3]);
-		this.getStartPosition().setY(B[4]);
-		this.getStartPosition().setZ(B[5]);
-		// goal position [x][y][z]
-		this.getGoalPosition().setX(B[6]);
-		this.getGoalPosition().setY(B[7]);
-		this.getGoalPosition().setZ(B[8]);*/
-		this.startPosition = new Position(B[3],B[4],B[5]);
-		this.goalPosition = new Position(B[6],B[7],B[8]);
-		//all maze cells
-		int c=8;
-		for (int i = 0; i < this.row; i++) {
-			for (int j = 0; j < this.column; j++) {
-				for (int k = 0; k < this.floor; k++) {
-					this.maze[i][j][k]=B[c+1];
+	public Maze3d(byte[] B) throws IOException {
+		ByteArrayInputStream inArray= new ByteArrayInputStream(B);
+		DataInputStream data = new DataInputStream(inArray);
+		this.row = data.readInt();
+		this.column = data.readInt();
+		this.floor = data.readInt();
+		startPosition = new Position(data.readInt(),data.readInt(),data.readInt());
+		goalPosition = new Position(data.readInt(),data.readInt(),data.readInt());
+		
+		this.maze = new int[this.row][this.column][this.floor];
+		
+		for (int i = 0; i < this.getRow(); i++) {
+			for (int j = 0; j < this.getColumn(); j++) {
+				for (int j2 = 0; j2 < this.getFloor(); j2++) {
+					this.maze[i][j][j2] = data.readByte();
 				}
-
 			}
 		}
 	}
@@ -128,14 +134,14 @@ public class Maze3d {
 	}
 
 	// copy cTOR
-	public Maze3d(Maze3d myMaze3d) {
+/*	public Maze3d(Maze3d myMaze3d) {
 		this.row = myMaze3d.row;
 		this.column = myMaze3d.column;
 		this.floor = myMaze3d.floor;
 		this.startPosition = myMaze3d.startPosition;
 		this.goalPosition = myMaze3d.goalPosition;
 		this.maze = new int[myMaze3d.row][myMaze3d.column][myMaze3d.floor];
-	}
+	}*/
 
 	@Override
 	public String toString() {
@@ -233,38 +239,39 @@ public class Maze3d {
 		System.out.println(s);
 	}
 
-	public byte[] toByteArray() {
+	public byte[] toByteArray() throws IOException {
 
-		// put in arraylist (row,column,floor,start(x,y,z),goal(x,y,z))
-		ArrayList<Byte> Array = new ArrayList<Byte>();
-		Array.add((byte) getRow());
-		Array.add((byte) getColumn());
-		Array.add((byte) getFloor());
-		Array.add((byte) startPosition.getX());
-		Array.add((byte) startPosition.getY());
-		Array.add((byte) startPosition.getZ());
-		Array.add((byte) goalPosition.getX());
-		Array.add((byte) goalPosition.getY());
-		Array.add((byte) goalPosition.getZ());
-		// put in array ,all the maze cells 0 or 1;
-		for (int x = 0; x < row; x++) {
-			for (int y = 0; y < column; y++) {
-				for (int z = 0; z < floor; z++) {
-
-					Array.add((byte) maze[x][y][z]);
-
+		
+			
+			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+			DataOutputStream data = new DataOutputStream(byteArray);
+			data.writeInt(this.getRow());
+			data.writeInt(this.getColumn());
+			data.writeInt(this.getFloor());
+			data.writeInt(this.getStartPosition().getX());
+			data.writeInt(this.getStartPosition().getY());
+			data.writeInt(this.getStartPosition().getZ());
+			data.writeInt(this.getGoalPosition().getX());
+			data.writeInt(this.getGoalPosition().getY());
+			data.writeInt(this.getGoalPosition().getZ());
+			
+			
+			
+			for (int i = 0; i < this.getRow(); i++) {
+				for (int j = 0; j < this.getColumn(); j++) {
+					for (int j2 = 0; j2 < this.getFloor(); j2++) {
+						data.writeByte(this.maze[i][j][j2]);
+						
+					}
 				}
-				
 			}
+			
+			
+			return byteArray.toByteArray();
+			
 		}
-		// copy the array and convert to bytes array;
-		byte[] bytes = new byte[Array.size()];
-		for (int i = 0; i < bytes.length; i++) {
-			bytes[i] = Array.get(i);
-		}
-		System.out.println(Array);
-		return bytes;
-	}
+
+	
 
 	// print the maze3d
 	public void print() {
@@ -277,6 +284,30 @@ public class Maze3d {
 			}
 			System.out.println();
 		}
+	}
+	@Override
+	public boolean equals(Object other) {
+		Maze3d m = (Maze3d) other;
+		if (getRow() == m.getRow() && getColumn() == m.getColumn()
+				&& getFloor() == m.getFloor()) {
+			if (startPosition.equals(m.getStartPosition())
+					&& goalPosition.equals(m.getGoalPosition())) {
+				for (int i = 0; i < maze.length; i++) {
+					for (int j = 0; j < maze[0].length; j++) {
+						for (int j2 = 0; j2 < maze[0][0].length; j2++) {
+							if (maze[i][j][j2] != m.getmaze3dIndex(i, j, j2)) {
+								return false;
+							}
+						}
+					}
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		return true;
 	}
 
 }
