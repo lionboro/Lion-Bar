@@ -1,5 +1,6 @@
 package controller;
 
 public interface Command {
-	public void doCommand(String[] args);
+	public void doCommand();
+	public void setArgs(String[] args);
 }

@@ -12,6 +12,10 @@ public class Cli {
 	private BufferedReader In;
 	private Writer Out;
 	private HashMap<String, Command> Commands;
+	private View v;
+	public void setV(View v) {
+		this.v = v;
+	}
 
 	public void CLI(BufferedReader in, Writer Out, HashMap<String,Command> commands) {
 		this.In = in;
@@ -54,7 +58,9 @@ public class Cli {
 								System.arraycopy(arr, i, args, 0, arr.length - i);
 							}
 
-							command.doCommand(args);
+							command.setArgs(args);
+							v.update(command);
+							
 						}
 
 						Out.write("Enter command: ");

@@ -27,18 +27,30 @@ public class MyModel implements Model {
 	}
 	
 	@Override
-	public void generateMaze(String name, int rows, int column,int floor){
+	public void generateMaze(String[] args){
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {				
 				MyMaze3dGenerator mg = new MyMaze3dGenerator();
-				Maze3d maze = mg.generate(rows, column,floor);
-				mazes.put(name, maze);
+				Maze3d maze = mg.generate(Integer.valueOf(args[1]), Integer.valueOf(args[2]),Integer.valueOf(args[3]));
+				mazes.put(args[0], maze);
 				//controller.displayMessage("Maze " + name + " is ready\n");				
 			}				
 		});
 		thread.start();	
 		threads.add(thread);
+	}
+
+	@Override
+	public void saveMaze(String name, String fileName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loadMaze(String fileName, String name) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
