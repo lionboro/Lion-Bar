@@ -1,7 +1,7 @@
-/io/
-/view/
 /Demo/
 /Run/
 /algorithms/
-/model/
 /controller/
+/io/
+/model/
+/view/

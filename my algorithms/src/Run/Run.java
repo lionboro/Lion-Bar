@@ -12,7 +12,7 @@ public class Run {
 	public static void main(String[] args) throws IOException{
 	Demo demo=new Demo();
 	demo.run();
-	System.out.println("lion borodiansky");
+	System.out.println("bar");
 	}
 
 }
