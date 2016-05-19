@@ -13,48 +13,99 @@ import algorithms.mazeGenerators.MyMaze3dGenerator;
 import controller.Controller;
 import io.MyCompressorOutputStream;
 
-
-
 public class MyModel implements Model {
 	private Controller controller;
 	private ArrayList<Thread> threads = new ArrayList<Thread>();
 	private HashMap<String, Maze3d> mazes = new HashMap<String, Maze3d>();
-	
-	
-	public MyModel(Controller controller)
-	{
+
+	public MyModel(Controller controller) {
 		this.controller = controller;
 	}
+
+	@Override
+	public void Dir(String path) {
+
+	}
+
 	
 	@Override
-	public void generateMaze(String[] args){
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {				
-				MyMaze3dGenerator mg = new MyMaze3dGenerator();
-				Maze3d maze = mg.generate(Integer.valueOf(args[1]), Integer.valueOf(args[2]),Integer.valueOf(args[3]));
-				mazes.put(args[0], maze);
-				//controller.displayMessage("Maze " + name + " is ready\n");				
-			}				
-		});
-		thread.start();	
-		threads.add(thread);
+	public void Generate_3d_maze(String name, int row, int column, int floor) {
+		MyMaze3dGenerator mg = new MyMaze3dGenerator();
+		Maze3d maze = mg.generate(row, column, floor);
+		mazes.put(name, maze);
+		controller.displayMessage("maze " + name + " is ready");
 	}
 
-	@Override
-	public void saveMaze(String name, String fileName) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void loadMaze(String fileName, String name) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	@Override
+	public void Display(String name) {
+		// TODO Auto-generated method stub
 
+	}
 
+	
+	@Override
+	public void Display_cross_section_by_x(int index_x, String name) {
+		// TODO Auto-generated method stub
 
+	}
+
+	
+	@Override
+	public void Display_cross_section_by_y(int index_x, String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
+	@Override
+	public void Display_cross_section_by_z(int index_x, String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
+	@Override
+	public void Save_maze(String name, String filename) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
+	@Override
+	public void Load_maze(String filename, String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void Maze_size(String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void File_size(String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void Slove(String name, String Algo) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void Display_solution(String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void Error_massage(String name) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

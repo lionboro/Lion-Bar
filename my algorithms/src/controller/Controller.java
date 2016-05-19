@@ -1,5 +1,16 @@
 package controller;
 
+import java.util.HashMap;
+
+import model.Model;
+import view.View;
+
 public interface Controller {
-	void update (Command command);
+	void setModel(Model model);
+
+	void setView(View view);
+
+	void displayMessage(String message);
+
+	//public HashMap<String, Command> getMap();
 }
