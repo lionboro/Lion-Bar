@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-
+import org.omg.Messaging.SyncScopeHelper;
 
 import controller.Controller;
 import controller.MyController;
@@ -19,5 +19,5 @@ public class Run {
 	
 	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	PrintWriter out = new PrintWriter(System.out);
-	
+
 }
