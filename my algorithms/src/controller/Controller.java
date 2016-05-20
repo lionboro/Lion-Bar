@@ -1,9 +1,9 @@
-package MVC.controller;
+package controller;
 
 import java.util.HashMap;
 
-import MVC.model.Model;
-import MVC.view.View;
+import model.Model;
+import view.View;
 
 public interface Controller {
 	void setModel(Model model);
@@ -11,8 +11,6 @@ public interface Controller {
 	void setView(View view);
 
 	void displayMessage(String message);
-
-	void generateCommands();
 
 	//public HashMap<String, Command> getMap();
 }

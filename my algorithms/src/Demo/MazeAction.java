@@ -1,4 +1,4 @@
-package algorithms.Demo;
+package Demo;
 
 import algorithms.search.Action;
 import algorithms.mazeGenerators.Direction;

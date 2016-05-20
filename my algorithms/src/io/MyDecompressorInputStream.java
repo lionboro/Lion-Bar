@@ -1,4 +1,4 @@
-package algorithms.io;
+package io;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;

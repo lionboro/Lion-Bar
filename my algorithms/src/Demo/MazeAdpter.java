@@ -1,12 +1,12 @@
-package algorithms.Demo;
+package Demo;
 
 
 import java.util.HashMap;
 
+import Demo.MazeState;
 import algorithms.search.Action;
 import algorithms.search.Searchable;
 import algorithms.search.State;
-import algorithms.Demo.MazeState;
 import algorithms.mazeGenerators.Direction;
 import algorithms.mazeGenerators.Position;
 import algorithms.mazeGenerators.Maze3d;

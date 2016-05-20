@@ -1,10 +1,10 @@
-package MVC.controller;
+package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import MVC.model.Model;
-import MVC.view.View;
+import model.Model;
+import view.View;
 
 public class MyController implements Controller {
 	private Model model;
@@ -13,7 +13,7 @@ public class MyController implements Controller {
 
 	public void setModel(Model model) {
 		this.model = model;
-		
+		commands_map.put("Generate_3d_maze", new C_Maze3dgenerator(model));
 	}
 
 	public void setView(View view) {
@@ -51,14 +51,9 @@ public class MyController implements Controller {
 
 	}
 
-	@Override
-	public void generateCommands() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
+	/*
+	 * @Override public HashMap<String, Command> getMap() { // TODO
+	 * Auto-generated method stub return null; }
+	 */
 
 }

@@ -1,13 +1,17 @@
-package MVC.model;
+package model;
 
-
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import MVC.controller.Controller;
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Maze3dGenerator;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
-
+import controller.Controller;
+import io.MyCompressorOutputStream;
 
 public class MyModel implements Model {
 	private Controller controller;

@@ -1,4 +1,4 @@
-package algorithms.Demo;
+package Demo;
 
 import algorithms.mazeGenerators.Position;
 import algorithms.search.State;
