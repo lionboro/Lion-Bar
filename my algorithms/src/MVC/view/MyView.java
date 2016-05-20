@@ -1,12 +1,12 @@
-package view;
+package MVC.view;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.HashMap;
 
-import controller.Command;
-import controller.Controller;
+import MVC.controller.Command;
+import MVC.controller.Controller;
 
 public class MyView implements View {
 

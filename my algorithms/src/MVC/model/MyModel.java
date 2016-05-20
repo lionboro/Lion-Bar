@@ -1,12 +1,12 @@
-package model;
+package MVC.model;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import MVC.controller.Controller;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
-import controller.Controller;
 
 
 public class MyModel implements Model {

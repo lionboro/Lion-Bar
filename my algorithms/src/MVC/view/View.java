@@ -1,8 +1,8 @@
-package view;
+package MVC.view;
 
 import java.util.HashMap;
 
-import controller.Command;
+import MVC.controller.Command;
 
 public interface View {
 	void displayMessage(String message);

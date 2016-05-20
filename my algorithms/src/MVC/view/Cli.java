@@ -1,4 +1,4 @@
-package view;
+package MVC.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.HashMap;
 
-import controller.Command;
+import MVC.controller.Command;
 
 public class Cli {
 	private BufferedReader in;

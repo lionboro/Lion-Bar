@@ -1,9 +1,9 @@
-package controller;
+package MVC.controller;
 
 import java.util.HashMap;
 
-import model.Model;
-import view.View;
+import MVC.model.Model;
+import MVC.view.View;
 
 public interface Controller {
 	void setModel(Model model);
