@@ -12,5 +12,7 @@ public interface Controller {
 
 	void displayMessage(String message);
 
+	void generateCommands();
+
 	//public HashMap<String, Command> getMap();
 }

@@ -13,7 +13,7 @@ public class MyController implements Controller {
 
 	public void setModel(Model model) {
 		this.model = model;
-		commands_map.put("Generate_3d_maze", new C_Maze3dgenerator(model));
+		
 	}
 
 	public void setView(View view) {
@@ -51,9 +51,14 @@ public class MyController implements Controller {
 
 	}
 
-	/*
-	 * @Override public HashMap<String, Command> getMap() { // TODO
-	 * Auto-generated method stub return null; }
-	 */
+	@Override
+	public void generateCommands() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
 
 }

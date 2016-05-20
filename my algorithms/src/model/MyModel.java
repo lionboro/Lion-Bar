@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import algorithms.mazeGenerators.Maze3d;
-import algorithms.mazeGenerators.Maze3dGenerator;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
-import controller.Controller;
-import io.MyCompressorOutputStream;
+import controller.Controller;import io.MyCompressorOutputStream;
 
 public class MyModel implements Model {
 	private Controller controller;

@@ -3,21 +3,32 @@ package boot;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
-import org.omg.Messaging.SyncScopeHelper;
-
+import controller.Command;
 import controller.Controller;
 import controller.MyController;
 import model.Model;
 import model.MyModel;
+import view.Cli;
 import view.MyView;
 import view.View;
 
 public class Run {
-	Controller controller = new MyController();
-	Model model = new MyModel(controller);
-	
-	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-	PrintWriter out = new PrintWriter(System.out);
+
+	public static void main(String[] args) {
+		Controller controller = new MyController();
+		Model model = new MyModel(controller);
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter out = new PrintWriter(System.out);
+		View view = new MyView(controller, in, out);
+		
+		controller.setModel(model);
+		controller.setView(view);
+		
+		controller.generateCommands();
+		view.start();
+	}
 
 }
