@@ -1,14 +1,13 @@
 package model;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import algorithms.mazeGenerators.Maze3d;
-import controller.Controller;import io.MyCompressorOutputStream;
+import algorithms.mazeGenerators.MyMaze3dGenerator;
+import controller.Controller;
+
 
 public class MyModel implements Model {
 	private Controller controller;
