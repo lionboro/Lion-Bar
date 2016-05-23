@@ -1,5 +1,7 @@
 package model;
 
+import algorithms.mazeGenerators.Maze3d;
+
 /**
  * 
  * @author בר
@@ -52,15 +54,17 @@ public interface Model {
 	 * 
 	 * @param name
 	 * @param filename
+	 * @throws Exception 
 	 */
-	void Save_maze(String name, String filename);
+	void Save_maze(String name, String filename) throws Exception;
 
 	/**
 	 * 
 	 * @param filename
 	 * @param name
+	 * @throws Exception 
 	 */
-	void Load_maze(String filename, String name);
+	void Load_maze(String filename, String name) throws Exception;
 
 	/**
 	 * 
@@ -88,5 +92,8 @@ public interface Model {
 	void Display_solution(String name);
 
 	void Error_massage(String name);
+	
+	Maze3d getMaze(String name);
+
 
 }
