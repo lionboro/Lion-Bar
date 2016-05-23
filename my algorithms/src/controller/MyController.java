@@ -13,47 +13,35 @@ public class MyController implements Controller {
 
 	public void setModel(Model model) {
 		this.model = model;
-		commands_map.put("Generate_3d_maze", new C_Maze3dgenerator(model));
+
 	}
 
 	public void setView(View view) {
 		this.view = view;
 	}
 
-	public void setCommands(HashMap<String, Command> commands) {
-		this.commands_map = new HashMap<String, Command>();
+	@Override
+	public void displayMessage(String message) {
+		view.displayMessage(message);
+	}
+	@Override
+	public void modelSolution(String[] solution) {
+		view.sendDisplySolution(solution);
 
-		commands_map.put("Dir", new Command() {
-
-			@Override
-			public void doCommand(String[] arg) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		commands_map.put("Generate_3d_maze", new Command() {
-
-			@Override
-			public void doCommand(String[] arg) {
-				String name_of_maze = arg[0];
-				int row = Integer.parseInt(arg[1]);
-				int column = Integer.parseInt(arg[2]);
-				int floor = Integer.parseInt(arg[3]);
-				model.Generate_3d_maze(name_of_maze, row, column, floor);
-			}
-		});
-
+	}
+	@Override
+	public void generateCommands() {
+		HashMap<String, Command> commands = new HashMap<String, Command>();
+		commands.put("Generate_3d_maze", new Generate_Maze_Command(model));
+		commands.put("Save_maze", new Save_Maze_Command(model));
+		commands.put("Load_maze",new Load_Maze_Command(model));
+		view.sendCommands(commands);
 	}
 
 	@Override
-	public void displayMessage(String message) {
-		// TODO Auto-generated method stub
-
+	public HashMap<String, Command> getMap() {
+		
+			return commands_map;
 	}
-
-	/*
-	 * @Override public HashMap<String, Command> getMap() { // TODO
-	 * Auto-generated method stub return null; }
-	 */
 
 }

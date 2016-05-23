@@ -104,8 +104,9 @@ public class Maze3d {
 	
 	
 	
-
-	public Maze3d(byte[] B) throws IOException {
+/*
+	public Maze3d(byte[] B) {
+	
 		ByteArrayInputStream inArray= new ByteArrayInputStream(B);
 		DataInputStream data = new DataInputStream(inArray);
 		this.row = data.readInt();
@@ -123,7 +124,29 @@ public class Maze3d {
 				}
 			}
 		}
+	}*/
+	public Maze3d(byte[] b) 
+	{
+		this.row=b[0];
+		this.column = b[1];
+		this.floor = b[2];
+		this.startPosition = new Position(b[5],b[4],b[3]);
+		this.goalPosition = new Position(b[8],b[6],b[7]);
+		this.maze =  new int[column][row][floor];
+		int x = 9;
+			for (int z = 0; z < floor; z++) 
+			{
+				for (int j = 0; j < row; j++) 
+				{
+					for (int j2 = 0; j2 < column; j2++)
+					{
+						this.maze[j2][j][z] = b[x];
+						x+=1;
+					}
+				}
+			}	
 	}
+	
 
 	// cTOR of the maze
 	public Maze3d(int row, int column, int floor) {
